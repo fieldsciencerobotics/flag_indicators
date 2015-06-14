@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <device>
   <developer>Field Science Robotics</developer>
-  <product>FlagIndicators</product>
+  <product>flag_indicators</product>
   <pwrdownmode>false</pwrdownmode>
   <regular>
     <reg name="Raise flag" id="11">
