@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<device>
+  <developer>Field Science Robotics</developer>
+  <product>Flag indicators</product>
+  <pwrdownmode>false</pwrdownmode>
+  <regular>
+    <reg name="Raise flag" id="11">
+      <endpoint name="Raise flag" type="num" dir="out">
+        <size>1</size>
+      </endpoint>
+    </reg>
+	<reg name="Lower flag" id="12">
+      <endpoint name="Lower flag" type="num" dir="out">
+        <size>1</size>
+      </endpoint>
+    </reg>
+	<reg name="Request battery voltage" id="13">
+      <endpoint name="Request battery voltage" type="bin" dir="out">
+        <size>1</size>
+      </endpoint>
+    </reg>	
+	<reg name="Battery voltage" id="14">
+      <endpoint name="Cell 1 voltage" type="num" dir="inp">
+        <position>0</position>
+        <size>2</size>
+      </endpoint>
+      <endpoint name="Cell 2 voltage" type="num" dir="inp">
+        <position>2</position>
+        <size>2</size>
+      </endpoint>
+    </reg>
+  </regular>
+</device>
