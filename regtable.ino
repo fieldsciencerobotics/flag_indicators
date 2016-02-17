@@ -34,6 +34,13 @@ DEFINE_COMMON_REGISTERS()
 
 
 //Define custom registers
+
+static byte dt_heart_beat[2];
+REGISTER reg_heart_beat(dt_heart_beat, sizeof(dt_heart_beat), &send_heart_beat, NULL);
+
+static byte dt_ack_heart_beat[2];
+REGISTER reg_ack_heart_beat(dt_ack_heart_beat, sizeof(dt_ack_heart_beat), NULL, &set_ack_heart_beat);
+
 static byte dt_raise_flag[2];
 REGISTER reg_raise_flag(dt_raise_flag, sizeof(dt_raise_flag), NULL, &set_raise_flag);
 
@@ -46,6 +53,8 @@ REGISTER reg_lower_flag(dt_lower_flag, sizeof(dt_lower_flag), NULL, &set_lower_f
  */
  
 DECLARE_REGISTERS_START()
+  &reg_heart_beat, //19
+  &reg_ack_heart_beat, //20
   &reg_raise_flag,  // 11
   &reg_lower_flag  // 12
 DECLARE_REGISTERS_END()
@@ -61,6 +70,18 @@ DEFINE_COMMON_CALLBACKS()
 /**
  * Define custom getter/setter callback functions
  */
+
+ 
+const void set_ack_heart_beat(byte rId, byte *value)
+{
+  hb_state = Pulse;
+  swap.getRegister(REGI_HEART_BEAT)->getData();
+}
+
+const void send_heart_beat(byte rId)
+{
+  int_to_reg(swap.getRegister(REGI_HEART_BEAT), hb_state);
+}
 
 const void set_raise_flag(byte rId, byte *value)
 {
